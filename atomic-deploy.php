@@ -147,7 +147,7 @@ function checkParams($deployDir, $deployCacheDir, $revision, $revisionsToKeep, $
         $result = false;
     }
 
-    if (false !== $revisionsToKeep && (!is_int((integer)$revisionsToKeep) || $revisionsToKeep <= 0)) {
+    if (false !== $revisionsToKeep && (!is_int((int)$revisionsToKeep) || $revisionsToKeep <= 0)) {
         out("Number of revisions to keep must be a number greater than zero.", 'info');
         $result = false;
     }
@@ -390,8 +390,11 @@ class Deployer
             $rmIndex = $revisionsToKeep + 2;
 
             // ls 1 directory by time modified | collect all dirs from ${revisionsToKeep} line of output | translate newlines and nulls | remove all those dirs
-            exec("ls -1dtp ${revisionsDir}/** | tail -n +${rmIndex} | tr " . '\'\n\' \'\0\'' . " | xargs -0 rm -rf --",
-                $output, $returnVar);
+            exec(
+                "ls -1dtp ${revisionsDir}/** | tail -n +${rmIndex} | tr " . '\'\n\' \'\0\'' . " | xargs -0 rm -rf --",
+                $output,
+                $returnVar
+            );
 
             if ($returnVar > 0) {
                 throw new RuntimeException('Could not prune old revisions' . $output);
@@ -551,8 +554,8 @@ class PasswordProtect
      */
     public static function generateAuthString(): string
     {
-        $username = 'onedesign';
-        $password = 'oneisus';
+        $username = 'makerepeat';
+        $password = 'onemoretime';
 
         $encrypted_password = crypt($password, base64_encode($password));
         return $username . ':' . $encrypted_password;
