@@ -39,7 +39,7 @@ curl -sS https://raw.githubusercontent.com/make-repeat/atomic-deploy/main/atomic
 - `--ansi` forces ANSI color output
 - `--no-ansi` disables ANSI color output
 - `--quiet` supresses unimportant messages
-- `--protect` Password protect sites at .oneis.us (default: `true`)
+- `--protect` Password protect site (default: `true`)
 
 #### Symlinks
 
